@@ -35,6 +35,7 @@
 #include "Targets/Sparc.h"
 #include "Targets/SystemZ.h"
 #include "Targets/TCE.h"
+#include "Targets/WDC65816.h"
 #include "Targets/WebAssembly.h"
 #include "Targets/X86.h"
 #include "Targets/XCore.h"
@@ -246,6 +247,9 @@ TargetInfo *AllocateTarget(const llvm::Triple &Triple,
 
   case llvm::Triple::msp430:
     return new MSP430TargetInfo(Triple, Opts);
+
+  case llvm::Triple::wdc65816:
+    return new WDC65816TargetInfo(Triple, Opts);
 
   case llvm::Triple::nios2:
     return new LinuxTargetInfo<Nios2TargetInfo>(Triple, Opts);
