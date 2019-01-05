@@ -35,7 +35,7 @@ public:
     LongWidth = 32;
     LongLongWidth = 64;
     LongAlign = LongLongAlign = 8;
-    PointerWidth = 24;
+    PointerWidth = 16; // WDC65816-TODO will need to expand this
     PointerAlign = 8;
     SuitableAlign = 16;
     SizeType = UnsignedShort;
@@ -43,7 +43,7 @@ public:
     IntPtrType = SignedInt;
     PtrDiffType = SignedShort;
     SigAtomicType = SignedLong;
-    resetDataLayout("e-p:24:8-i16:8-a:8-n8:16-S8");
+    resetDataLayout("e-p:16:8-i16:8-a:8-n8:16-S8");
   }
   void getTargetDefines(const LangOptions &Opts,
                         MacroBuilder &Builder) const override;
