@@ -29,20 +29,21 @@ public:
   WDC65816TargetInfo(const llvm::Triple &Triple, const TargetOptions &)
       : TargetInfo(Triple) {
     TLSSupported = false;
+    // WDC65816-TODO are these definitions correct? esp. IntMaxType?
     IntWidth = 16;
-    IntAlign = 16;
+    IntAlign = 8;
     LongWidth = 32;
     LongLongWidth = 64;
-    LongAlign = LongLongAlign = 16;
-    PointerWidth = 16;
-    PointerAlign = 16;
+    LongAlign = LongLongAlign = 8;
+    PointerWidth = 24;
+    PointerAlign = 8;
     SuitableAlign = 16;
-    SizeType = UnsignedInt;
+    SizeType = UnsignedShort;
     IntMaxType = SignedLongLong;
     IntPtrType = SignedInt;
-    PtrDiffType = SignedInt;
+    PtrDiffType = SignedShort;
     SigAtomicType = SignedLong;
-    resetDataLayout("e-m:e-p:16:16-i32:16-i64:16-f32:16-f64:16-a:8-n8:16-S16");
+    resetDataLayout("e-p:24:8-i16:8-a:8-n8:16-S8");
   }
   void getTargetDefines(const LangOptions &Opts,
                         MacroBuilder &Builder) const override;
@@ -66,12 +67,6 @@ public:
   bool validateAsmConstraint(const char *&Name,
                              TargetInfo::ConstraintInfo &info) const override {
     // FIXME: implement
-    switch (*Name) {
-    case 'K': // the constant 1
-    case 'L': // constant -1^20 .. 1^19
-    case 'M': // constant 1-4:
-      return true;
-    }
     // No target constraints for now.
     return false;
   }

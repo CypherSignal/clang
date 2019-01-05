@@ -18,8 +18,8 @@ using namespace clang;
 using namespace clang::targets;
 
 const char *const WDC65816TargetInfo::GCCRegNames[] = {
-    "r0", "r1", "r2",  "r3",  "r4",  "r5",  "r6",  "r7",
-    "r8", "r9", "r10", "r11", "r12", "r13", "r14", "r15"
+    "a", "b", "c", "dbr", "d", "k", "pc", "p", "sh", "sl",
+    "s", "xl", "xh", "x", "yl", "yh", "y"
 };
 
 ArrayRef<const char *> WDC65816TargetInfo::getGCCRegNames() const {
